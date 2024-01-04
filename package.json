@@ -1,0 +1,35 @@
+{
+  "name": "joy-api",
+  "version": "1.0.0",
+  "description": "API Rest Full | NodeJs | MongoDB",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node --experimental-json-modules src/app.js",
+    "dev": "nodemon --experimental-json-modules src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lauriacunia/joy-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lauriacunia/joy-api/issues"
+  },
+  "homepage": "https://github.com/Lauriacunia/joy-api#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "connect-mongo": "^5.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "helmet": "^7.1.0",
+    "mongoose": "^8.0.3",
+    "mongoose-paginate-v2": "^1.7.4"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0"
+  }
+}
