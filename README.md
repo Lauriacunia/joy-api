@@ -2,7 +2,7 @@
 
 API Rest Full | NodeJs | MongoDB
 
-### Dependencias:
+### Dependencies:
 
 - express
 

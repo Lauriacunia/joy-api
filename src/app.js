@@ -3,26 +3,28 @@ import helmet from "helmet";
 import morgan from "morgan";
 import { connectMongoDB } from "./config/configMongoDB.js";
 import CONFIG from "./config/config.js";
+import router from "./routes/index.js";
+import { errorHandler } from "./utils/errorHandler.js";
 
-/** ★━━━━━━━━━━━★ variables ★━━━━━━━━━━━★ */
+/** ━━━━━━━━━━━ variables ━━━━━━━━━━━ */
 
 const app = express();
 const { PORT } = CONFIG;
 
-/** ★━━━━━━━━━━━★ middlewares ★━━━━━━━━━━━★*/
+/** ━━━━━━━━━━━ middlewares ━━━━━━━━━━━*/
 app.use(morgan("dev"));
 app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(errorHandler);
 
-/** ★━━━━━━━━━━━★ routes ★━━━━━━━━━━━★ */
+/** ━━━━━━━━━━━ routes ━━━━━━━━━━━ */
+app.use("/", router);
 
-app.get("/", (req, res) => {
-  res.send("¡Hola, mundo!");
-});
-/** ★━━━━━━━━━━━★ connection mongoDB ★━━━━━━━━━━━★ */
+/** ━━━━━━━━━━━connection mongoDB ━━━━━━━━━━━ */
 connectMongoDB();
 
+/** ━━━━━━━━━━━ server up ━━━━━━━━━━━ */
 const server = app.listen(PORT, () => {
   console.log(`Servidor Express en funcionamiento en el puerto ${PORT}`);
   console.log(
