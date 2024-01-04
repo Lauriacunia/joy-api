@@ -1,9 +1,8 @@
 import { Router } from "express";
+import categoryRouter from "./category.router.js";
 
 const router = Router();
 
-router.use("/", (req, res) => {
-  res.send("¡Hola, router!");
-});
+router.use("/categories", categoryRouter);
 
 export default router;
