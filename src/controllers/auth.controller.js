@@ -1,11 +1,14 @@
 class AuthController {
   login(req, res) {
-    // const { username, password } = req.query;
-    // if (username !== "pepe" || password !== "pepepass") {
-    //   return res.send("login failed");
-    // }
-    // req.session.user = username;
-    // req.session.admin = true;
+    const { username, password } = req.body;
+    console.log("username => ", username);
+    console.log("password => ", password);
+    if (username !== "pepe" || password !== "pepepass") {
+      return res.send("login failed");
+    }
+    req.session.user = username;
+    req.session.admin = true;
+    console.log("session => ", req.session);
     res.send("login success!");
   }
 

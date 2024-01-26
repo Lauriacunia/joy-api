@@ -7,6 +7,7 @@ import router from "./routes/index.js";
 import { errorHandler } from "./utils/errorHandler.js";
 import cookieParser from "cookie-parser";
 import session from "express-session";
+import cors from "cors";
 
 /** ━━━━━━━━━━━ variables ━━━━━━━━━━━ */
 
@@ -22,6 +23,12 @@ app.use(errorHandler);
 app.use(cookieParser(CONFIG.SECRET));
 app.use(
   session({ secret: CONFIG.SECRET, resave: true, saveUninitialized: true })
+);
+app.use(
+  cors({
+    origin: "*",
+    methods: "GET, POST, PUT, DELETE, OPTIONS",
+  })
 );
 
 /** ━━━━━━━━━━━ routes ━━━━━━━━━━━ */
