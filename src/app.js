@@ -5,6 +5,8 @@ import { connectMongoDB } from "./config/configMongoDB.js";
 import CONFIG from "./config/config.js";
 import router from "./routes/index.js";
 import { errorHandler } from "./utils/errorHandler.js";
+import cookieParser from "cookie-parser";
+import session from "express-session";
 
 /** ━━━━━━━━━━━ variables ━━━━━━━━━━━ */
 
@@ -17,6 +19,10 @@ app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(errorHandler);
+app.use(cookieParser(CONFIG.SECRET));
+app.use(
+  session({ secret: CONFIG.SECRET, resave: true, saveUninitialized: true })
+);
 
 /** ━━━━━━━━━━━ routes ━━━━━━━━━━━ */
 app.use("/", router);

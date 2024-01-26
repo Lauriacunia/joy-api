@@ -8,6 +8,7 @@ const CONFIG = {
   MONGO_USER: process.env.MONGO_USER || "",
   MONGO_PASS: process.env.MONGO_PASS || "",
   DATASOURCE: process.env.DATASOURCE || "MONGO",
+  SECRET: process.env.SECRET || "",
 };
 
 export default CONFIG;

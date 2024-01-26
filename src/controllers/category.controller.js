@@ -4,6 +4,8 @@ const categoryService = new CategoryService();
 class CategoryController {
   async getAll(req, res) {
     try {
+      req.session.count = req.session.count ? req.session.count + 1 : 1;
+      console.log("req.session.count", req.session.count);
       const categories = await categoryService.getAll();
       categories
         ? res.status(200).json({
