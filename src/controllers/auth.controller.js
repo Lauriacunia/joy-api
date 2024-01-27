@@ -6,7 +6,7 @@ class AuthController {
     if (username !== "pepe" || password !== "pepepass") {
       return res.send("login failed");
     }
-    req.session.user = username;
+    req.session.username = username;
     req.session.admin = true;
     console.log("session => ", req.session);
     res.send("login success!");
@@ -17,8 +17,13 @@ class AuthController {
   }
 
   logout(req, res) {
-    req.session.destroy();
-    res.send("logout success!");
+    req.session.destroy((err) => {
+      if (err) {
+        return res.json({ status: "Logout ERROR", body: err });
+      }
+      res.send("Logout ok!");
+    });
+    console.log("session => ", req.session);
   }
 }
 
