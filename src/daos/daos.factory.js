@@ -3,6 +3,7 @@ import CONFIG from "../config/config.js";
 let categoryDao;
 let locationDao;
 let voucherDao;
+let userDao;
 
 switch (CONFIG.DATASOURCE) {
   case "MYSQL": {
@@ -16,6 +17,8 @@ switch (CONFIG.DATASOURCE) {
     locationDao = new LocationMongoDao();
     const { VoucherMongoDao } = await import("./mongo/voucher.mongo.dao.js");
     voucherDao = new VoucherMongoDao();
+    const { UserMongoDao } = await import("./mongo/user.mongo.dao.js");
+    userDao = new UserMongoDao();
     break;
   }
   default: {
@@ -28,6 +31,7 @@ const getDAOS = () => {
     categoryDao,
     locationDao,
     voucherDao,
+    userDao,
   };
 };
 

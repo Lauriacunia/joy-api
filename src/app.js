@@ -8,6 +8,10 @@ import { errorHandler } from "./utils/errorHandler.js";
 import cookieParser from "cookie-parser";
 import { sessionConfig } from "./config/session.config.js";
 import cors from "cors";
+import {
+  passportInitialize,
+  passportSession,
+} from "./config/passport.config.js";
 
 /** ━━━━━━━━━━━ variables ━━━━━━━━━━━ */
 
@@ -22,6 +26,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(errorHandler);
 app.use(cookieParser(CONFIG.SECRET));
 app.use(sessionConfig);
+app.use(passportInitialize);
+app.use(passportSession);
 app.use(
   cors({
     origin: "*",
