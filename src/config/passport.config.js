@@ -49,6 +49,8 @@ passport.use(
       } else {
         const hashPass = await encryptPassword(password);
         const newUser = {
+          first_name: req.body.first_name,
+          last_name: req.body.last_name,
           email: req.body.email,
           password: hashPass,
         };

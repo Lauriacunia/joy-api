@@ -1,4 +1,6 @@
 import passport from "passport";
+import UserDtoResponse from "../dto/responses/user.dto.response.js";
+import { generateToken, verifyToken } from "../services/jwt.service.js";
 
 class AuthController {
   register(req, res, next) {
@@ -17,10 +19,11 @@ class AuthController {
             return next(err);
           }
 
-          // Aquí puedes acceder al usuario creado y enviarlo en la respuesta
-          const createdUser = req.user;
-
-          res.json({ message: info.message, createdUser });
+          const userCreated = req.user;
+          const token = generateToken(userCreated.email, 15);
+          userCreated.accessToken = token;
+          const userDto = new UserDtoResponse(userCreated);
+          res.json({ message: info.message, user: userDto });
         });
       } catch (error) {
         next(error);
